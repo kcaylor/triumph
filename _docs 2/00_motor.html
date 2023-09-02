@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Calculations and other programs for a 1959 Triumph TR3A conversion to electric drive.">
+
+<title>triumph - motor</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="triumph - motor">
+<meta property="og:description" content="">
+<meta property="og:site-name" content="triumph">
+<meta name="twitter:title" content="triumph - motor">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">triumph</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kcaylor/triumph" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00_motor.html">motor</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_motor.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">motor</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_performance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">performance</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_utilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">utilities</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#determining-the-tire-radius" id="toc-determining-the-tire-radius" class="nav-link active" data-scroll-target="#determining-the-tire-radius">Determining the Tire Radius</a></li>
+  <li><a href="#tire_radius" id="toc-tire_radius" class="nav-link" data-scroll-target="#tire_radius">tire_radius</a></li>
+  <li><a href="#convert-engine-wheel-and-gear-information-into-a-0-to-60-time" id="toc-convert-engine-wheel-and-gear-information-into-a-0-to-60-time" class="nav-link" data-scroll-target="#convert-engine-wheel-and-gear-information-into-a-0-to-60-time">Convert Engine, Wheel and Gear information into a 0-to-60 time</a>
+  <ul>
+  <li><a href="#torque-to-force-conversion" id="toc-torque-to-force-conversion" class="nav-link" data-scroll-target="#torque-to-force-conversion">Torque to Force Conversion:</a></li>
+  <li><a href="#torque_to_force" id="toc-torque_to_force" class="nav-link" data-scroll-target="#torque_to_force">Torque_to_Force</a></li>
+  <li><a href="#test-the-function" id="toc-test-the-function" class="nav-link" data-scroll-target="#test-the-function">Test the function</a></li>
+  <li><a href="#determining-acceleration" id="toc-determining-acceleration" class="nav-link" data-scroll-target="#determining-acceleration">Determining Acceleration</a></li>
+  <li><a href="#zero_to_sixty" id="toc-zero_to_sixty" class="nav-link" data-scroll-target="#zero_to_sixty">zero_to_sixty</a></li>
+  <li><a href="#acceleration" id="toc-acceleration" class="nav-link" data-scroll-target="#acceleration">Acceleration</a></li>
+  <li><a href="#determining-top-speed" id="toc-determining-top-speed" class="nav-link" data-scroll-target="#determining-top-speed">Determining Top Speed</a>
+  <ul class="collapse">
+  <li><a href="#top_speed" id="toc-top_speed" class="nav-link" data-scroll-target="#top_speed">top_speed</a></li>
+  <li><a href="#rpms-at-a-given-speed." id="toc-rpms-at-a-given-speed." class="nav-link" data-scroll-target="#rpms-at-a-given-speed.">RPMs at a given speed.</a></li>
+  <li><a href="#rpm_at_mph" id="toc-rpm_at_mph" class="nav-link" data-scroll-target="#rpm_at_mph">rpm_at_mph</a></li>
+  </ul></li>
+  <li><a href="#exploring-the-impacts-of-the-gear-ratio-on-acceleration-and-top-speed" id="toc-exploring-the-impacts-of-the-gear-ratio-on-acceleration-and-top-speed" class="nav-link" data-scroll-target="#exploring-the-impacts-of-the-gear-ratio-on-acceleration-and-top-speed">Exploring the impacts of the gear ratio on acceleration and top speed</a>
+  <ul class="collapse">
+  <li><a href="#evaluate" id="toc-evaluate" class="nav-link" data-scroll-target="#evaluate">evaluate</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kcaylor/triumph/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">motor</h1>
+</div>
+
+<div>
+  <div class="description">
+    Calculations and other programs for a 1959 Triumph TR3A conversion to electric drive.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="determining-the-tire-radius" class="level3">
+<h3 class="anchored" data-anchor-id="determining-the-tire-radius">Determining the Tire Radius</h3>
+<p>The 1959 Triumph TR3A typically came equipped with 15-inch wheels. To calculate the wheel radius, you need to take into account both the wheel diameter and the tire profile. In this case, let’s consider a tire size of 165/80R15, which is a common tire size used on this vehicle.</p>
+<p>To find the tire radius, first calculate the sidewall height by multiplying the tire width (165 mm) by the aspect ratio (80%). Then convert this to inches:</p>
+<p>Sidewall height (in inches) = (165 mm × 0.80) / 25.4 ≈ 5.20 inches</p>
+<p>Next, add the sidewall height to half of the wheel diameter (7.5 inches):</p>
+<p>Tire radius (in inches) = 7.5 inches (wheel radius) + 5.20 inches (sidewall height) ≈ 12.70 inches</p>
+<p>So, the approximate tire radius for a 1959 Triumph TR3A with 165/80R15 tires is 12.7 inches. This value may vary depending on the specific tire model and inflation pressure.</p>
+<hr>
+<p><a href="https://github.com/kcaylor/triumph/blob/master/triumph/motor.py#L11" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="tire_radius" class="level3">
+<h3 class="anchored" data-anchor-id="tire_radius">tire_radius</h3>
+<blockquote class="blockquote">
+<pre><code> tire_radius (tire:str='165/80R15')</code></pre>
+</blockquote>
+<p>Calculate the tire radius in inches</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>tire</td>
+<td>str</td>
+<td>165/80R15</td>
+<td>tire size in the format of “165/80R15”</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>float</strong></td>
+<td></td>
+<td><strong>tire radius in inches</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="convert-engine-wheel-and-gear-information-into-a-0-to-60-time" class="level1">
+<h1>Convert Engine, Wheel and Gear information into a 0-to-60 time</h1>
+<p>To determine how many seconds it will take to accelerate to 60 mph, we need to know the mass of the car, the force acting on the car, and the acceleration of the car.</p>
+<p>The acceleration of the car is given by Newton’s second law of motion: <span class="math inline">\(F = M * A\)</span>.</p>
+<p>The force moving the car forward is governed by the engine torque, but modified by the gear ratio and the radius of the tires.</p>
+<p>Specifically, engine torque (<span class="math inline">\(T\)</span>, [Nm]) is multiplied by the gear ratio (<span class="math inline">\(G\)</span>), which provides a total torque acting on the tires. In addition, the force acting on the tires is not the same as the torque between the tires and the pavement. The torque between the tires and the pavement is determined by the radius of the tires, <span class="math inline">\(R\)</span> [m]:</p>
+<p><span class="math display">\[F = T * G / R\]</span></p>
+<section id="torque-to-force-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="torque-to-force-conversion">Torque to Force Conversion:</h3>
+<hr>
+<p><a href="https://github.com/kcaylor/triumph/blob/master/triumph/motor.py#L24" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="torque_to_force" class="level3">
+<h3 class="anchored" data-anchor-id="torque_to_force">Torque_to_Force</h3>
+<blockquote class="blockquote">
+<pre><code> Torque_to_Force (torque:float, gear_ratio:float, radius:float)</code></pre>
+</blockquote>
+<p>Convert engine torque to force acting on pavement to push the car</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>torque</td>
+<td>float</td>
+<td>torque in Nm</td>
+</tr>
+<tr class="even">
+<td>gear_ratio</td>
+<td>float</td>
+<td>gear ratio</td>
+</tr>
+<tr class="odd">
+<td>radius</td>
+<td>float</td>
+<td>radius of the wheel in m</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>float</strong></td>
+<td><strong>Force acting on the pavement to push the car (N)</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="test-the-function" class="level3">
+<h3 class="anchored" data-anchor-id="test-the-function">Test the function</h3>
+<p>Assume we have a vehicle with a torque of 220 Nm and a gear ratio of 3.7. Further assume that the tires have a radius of 0.3 m.</p>
+<p>In this case, the force acting on the tires is given by:</p>
+<p><span class="math display">\[ 220 \text{ Nm} * 3.7 / 0.3 \text{ m} = 2713.33 \text{ N}. \]</span></p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>torque<span class="op">=</span><span class="dv">220</span> <span class="co"># engine torque in Nm</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gear_ratio<span class="op">=</span><span class="fl">3.7</span> <span class="co"># gear ratio</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>radius<span class="op">=</span><span class="fl">0.3</span> <span class="co"># radius of the wheel in m</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> Torque_to_Force(torque, gear_ratio, radius)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The force acting on the pavement to push the car is </span><span class="sc">{</span><span class="bu">round</span>(F,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> N"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">round</span>(F,<span class="dv">2</span>),<span class="fl">2713.33</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The force acting on the pavement to push the car is 2713.33 N</code></pre>
+</div>
+</div>
+</section>
+<section id="determining-acceleration" class="level3">
+<h3 class="anchored" data-anchor-id="determining-acceleration">Determining Acceleration</h3>
+<p>To determine how fast the vehicle will accelerate, we need to know the mass of the vehicle. Assume the vehicle has a mass of 2000 lbs.</p>
+<hr>
+<p><a href="https://github.com/kcaylor/triumph/blob/master/triumph/motor.py#L38" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="zero_to_sixty" class="level3">
+<h3 class="anchored" data-anchor-id="zero_to_sixty">zero_to_sixty</h3>
+<blockquote class="blockquote">
+<pre><code> zero_to_sixty (A:float)</code></pre>
+</blockquote>
+<p>Calculate the time it takes to go from 0 to 60 mph</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>float</td>
+<td>acceleration in m/s^2</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>float</strong></td>
+<td><strong>time in seconds</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://github.com/kcaylor/triumph/blob/master/triumph/motor.py#L32" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="acceleration" class="level3">
+<h3 class="anchored" data-anchor-id="acceleration">Acceleration</h3>
+<blockquote class="blockquote">
+<pre><code> Acceleration (F:float, mass:float)</code></pre>
+</blockquote>
+<p>Calculate the acceleration of the car</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>F</td>
+<td>float</td>
+<td>Force in N</td>
+</tr>
+<tr class="even">
+<td>mass</td>
+<td>float</td>
+<td>mass of the car in kg</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns</strong></td>
+<td><strong>float</strong></td>
+<td><strong>acceleration in m/s^2</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>GVWR <span class="op">=</span> <span class="dv">2000</span> <span class="co"># lbs</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>GVWR_kg <span class="op">=</span> lbs_to_Kg(GVWR)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Acceleration(F, GVWR_kg)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Acceleration: </span><span class="sc">{</span><span class="bu">round</span>(A,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> m/s^2"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">round</span>(A,<span class="dv">2</span>),<span class="fl">2.99</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Acceleration: 2.99 m/s^2</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zero_to_sixty(A)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"It will take </span><span class="sc">{</span><span class="bu">round</span>(zero_to_sixty(A),<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> seconds to go from 0 </span><span class="ch">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ss">to 60 mph under ideal conditions."</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">round</span>(zero_to_sixty(A),<span class="dv">2</span>),<span class="fl">8.97</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>It will take 8.97 seconds to go from 0 to 60 mph under ideal conditions.</code></pre>
+</div>
+</div>
+</section>
+<section id="determining-top-speed" class="level2">
+<h2 class="anchored" data-anchor-id="determining-top-speed">Determining Top Speed</h2>
+<p>The top speed of the car will be determined by the motor RPMs, the gear ratio, and the radius of the tires.</p>
+<hr>
+<p><a href="https://github.com/kcaylor/triumph/blob/master/triumph/motor.py#L47" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="top_speed" class="level3">
+<h3 class="anchored" data-anchor-id="top_speed">top_speed</h3>
+<blockquote class="blockquote">
+<pre><code> top_speed (rpm_max:float, gear_ratio:float, radius:float)</code></pre>
+</blockquote>
+<p>Calculate the top speed of the car</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rpm_max</td>
+<td>float</td>
+<td>max rpm</td>
+</tr>
+<tr class="even">
+<td>gear_ratio</td>
+<td>float</td>
+<td>gear ratio</td>
+</tr>
+<tr class="odd">
+<td>radius</td>
+<td>float</td>
+<td>radius of the wheel in m</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>float</strong></td>
+<td><strong>top speed in mph</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>top_speed(<span class="dv">7000</span>, <span class="fl">3.7</span>, <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>66.47675446147143</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rpm_max <span class="op">=</span> <span class="dv">8000</span> <span class="co"># rpm</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gear_ratio <span class="op">=</span> <span class="fl">3.7</span> <span class="co"># gear ratio</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>radius <span class="op">=</span> <span class="fl">0.3</span> <span class="co"># radius of the wheel in m</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>mph_max <span class="op">=</span> top_speed(rpm_max, gear_ratio, radius)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Top speed: </span><span class="sc">{</span><span class="bu">round</span>(mph_max)<span class="sc">}</span><span class="ss"> mph"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">round</span>(mph_max), <span class="dv">76</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Top speed: 76 mph</code></pre>
+</div>
+</div>
+</section>
+<section id="rpms-at-a-given-speed." class="level3">
+<h3 class="anchored" data-anchor-id="rpms-at-a-given-speed.">RPMs at a given speed.</h3>
+<p>Knowing the tire dimensions and gear ratio, we can determine the RPM of the engine for any given speed.</p>
+<hr>
+<p><a href="https://github.com/kcaylor/triumph/blob/master/triumph/motor.py#L55" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="rpm_at_mph" class="level3">
+<h3 class="anchored" data-anchor-id="rpm_at_mph">rpm_at_mph</h3>
+<blockquote class="blockquote">
+<pre><code> rpm_at_mph (gear_ratio:float, tire:str, mph:float=60)</code></pre>
+</blockquote>
+<p>Calculate the rpm at a given speed</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gear_ratio</td>
+<td>float</td>
+<td></td>
+<td>gear ratio</td>
+</tr>
+<tr class="even">
+<td>tire</td>
+<td>str</td>
+<td></td>
+<td>tire size in the format of “165/80R15”</td>
+</tr>
+<tr class="odd">
+<td>mph</td>
+<td>float</td>
+<td>60</td>
+<td>speed in mph (default is 60 mph)</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>float</strong></td>
+<td></td>
+<td><strong>rpm</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The RPM at 60 mph in second gear (2.0): "</span>, rpm_at_mph(<span class="fl">2.0</span>, <span class="st">"165/80R15"</span>, <span class="dv">60</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The RPM at 100 mph in fourth gear (1.0): "</span>, rpm_at_mph(<span class="fl">1.0</span>, <span class="st">"165/80R15"</span>, <span class="dv">100</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>test_eq(rpm_at_mph(<span class="dv">1</span>, <span class="st">"165/80R15"</span>, <span class="dv">100</span>),<span class="dv">1324</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>test_eq(rpm_at_mph(<span class="fl">2.0</span>, <span class="st">"165/80R15"</span>, <span class="dv">60</span>),<span class="dv">1588</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The RPM at 60 mph in second gear (2.0):  1588
+The RPM at 100 mph in fourth gear (1.0):  1324</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exploring-the-impacts-of-the-gear-ratio-on-acceleration-and-top-speed" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-impacts-of-the-gear-ratio-on-acceleration-and-top-speed">Exploring the impacts of the gear ratio on acceleration and top speed</h2>
+<p>We want to determine an ideal gear ratio that maximizes the acceleration and top speed of the vehicle. To do this, we’ll need to create a function that takes the gear ratio as an input and returns the acceleration and top speed.</p>
+<hr>
+<p><a href="https://github.com/kcaylor/triumph/blob/master/triumph/motor.py#L66" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="evaluate" class="level3">
+<h3 class="anchored" data-anchor-id="evaluate">evaluate</h3>
+<blockquote class="blockquote">
+<pre><code> evaluate (gear_ratio:float, GVWR:float, tire:str, rpm_max:int,
+           torque:float)</code></pre>
+</blockquote>
+<p>Evaluate the car</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gear_ratio</td>
+<td>float</td>
+<td>gear ratio</td>
+</tr>
+<tr class="even">
+<td>GVWR</td>
+<td>float</td>
+<td>gross vehicle weight rating in kg</td>
+</tr>
+<tr class="odd">
+<td>tire</td>
+<td>str</td>
+<td>tire size in the format of “165/80R15”</td>
+</tr>
+<tr class="even">
+<td>rpm_max</td>
+<td>int</td>
+<td>max rpm</td>
+</tr>
+<tr class="odd">
+<td>torque</td>
+<td>float</td>
+<td>torque in Nm</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

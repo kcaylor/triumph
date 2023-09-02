@@ -1,0 +1,10 @@
+website:
+  sidebar:
+    contents:
+      - 00_motor.ipynb
+      - 01_performance.ipynb
+      - 02_utilities.ipynb
+      - 03_battery.ipynb
+      - 04_design.ipynb
+      - 05_tachometer.ipynb
+      - performance.html
